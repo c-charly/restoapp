@@ -1,0 +1,71 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environnement virtuel
+venv/
+env/
+ENV/
+.venv/
+
+# Variables d'environnement
+.env
+*.env
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Static files
+/staticfiles/
+/media/
+static/
+
+# Fichiers IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Tests / coverage
+htmlcov/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+.pytest_cache/
+
+# mypy
+.mypy_cache/
+
+# Docker
+*.pid
+*.sock
+
+# Secrets
+secrets.json
+
+# Celery
+celerybeat-schedule
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build
+dist/
+build/
+
+# Archives
+*.tar.gz
+*.zip
