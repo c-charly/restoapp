@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "drf_spectacular",
     "channels",
     # Apps
+    "accounts",
 ]
 
 MIDDLEWARE = [
@@ -104,7 +105,7 @@ CACHES = {
 # =============================================================================
 # AUTH & JWT
 # =============================================================================
-# AUTH_USER_MODEL = "accounts.User"
+AUTH_USER_MODEL = "accounts.User"
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
