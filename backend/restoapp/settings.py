@@ -28,6 +28,8 @@ INSTALLED_APPS = [
     "channels",
     # Apps
     "accounts",
+    "restaurants",
+    "core",
 ]
 
 MIDDLEWARE = [
@@ -136,6 +138,7 @@ SPECTACULAR_SETTINGS = {
     "SERVE_INCLUDE_SCHEMA": False,
     "TAGS": [
         {"name": "auth", "description": "Authentification JWT"},
+        {"name": "restaurants", "description": "Restaurants et menus"},
     ],
 }
 
@@ -145,9 +148,9 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # 5 Mo per images
-DATA_UPLOAD_MAX_MEMORY_SIZE = 5 * 1024 * 1024
 FILE_UPLOAD_MAX_MEMORY_SIZE  = 5 * 1024 * 1024
 
+# Extensions autorisées pour les images de plats
 MENU_ITEM_ALLOWED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"]
 MENU_ITEM_MAX_IMAGES_PER_ITEM = 5
 
