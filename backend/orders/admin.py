@@ -14,7 +14,9 @@ class OrderItemInline(admin.TabularInline):
     can_delete = False
 
     def line_total_display(self, obj):
-        return f"{obj.item_price * obj.quantity} XAF"
+        price = obj.item_price or 0
+        qty = obj.quantity or 0
+        return f"{price * qty}"
     line_total_display.short_description = "Total ligne"
 
 
