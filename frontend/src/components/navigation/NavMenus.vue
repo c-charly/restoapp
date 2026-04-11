@@ -27,7 +27,7 @@ const { isMobile } = useSidebar()
     <SidebarMenu>
       <SidebarMenuItem v-for="item in menus" :key="item.name">
         <SidebarMenuButton :tooltip="item.name" as-child>
-          <a href="#">
+          <a :href="item.url">
             <component :is="item.icon" v-if="item.icon" />
             <span>{{ item.name }}</span>
           </a>

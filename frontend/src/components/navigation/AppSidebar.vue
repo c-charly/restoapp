@@ -2,8 +2,8 @@
 import type { SidebarProps } from '@/components/ui/sidebar'
 
 import {
-  Frame,
-  PieChart
+  PieChart,
+  UtensilsCrossed
 } from "lucide-vue-next"
 import NavMenus from '@/components/navigation/NavMenus.vue'
 import NavUser from '@/components/navigation/NavUser.vue'
@@ -33,8 +33,8 @@ const data = {
   menus: [
     {
       name: "Restaurants",
-      url: "#",
-      icon: Frame,
+      url: "restaurants",
+      icon: UtensilsCrossed,
     },
     {
       name: "Commandes",
