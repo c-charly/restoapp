@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "accounts",
     "restaurants",
     "core",
+    "orders",
 ]
 
 MIDDLEWARE = [
@@ -139,6 +140,7 @@ SPECTACULAR_SETTINGS = {
     "TAGS": [
         {"name": "auth", "description": "Authentification JWT"},
         {"name": "restaurants", "description": "Restaurants et menus"},
+        {"name": "orders", "description": "Commandes"},
     ],
 }
 

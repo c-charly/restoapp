@@ -14,6 +14,7 @@ urlpatterns = [
     # API v1
     path("api/v1/auth/", include("accounts.urls")),
     path("api/v1/restaurants/", include("restaurants.urls")),
+    path("api/v1/orders/", include("orders.urls")),
 ]
 
 if settings.DEBUG:
