@@ -30,8 +30,7 @@ class RestaurantListCreateView(APIView):
 
     @extend_schema(tags=["restaurants"], summary="Liste des restaurants actifs")
     def get(self, request):
-        qs = Restaurant.objects.filter(is_active=True).order_by("name")
-        # qs = Restaurant.objects.filter(is_active=True).select_related("rating").order_by("name")
+        qs = Restaurant.objects.filter(is_active=True).select_related("rating").order_by("name")
         return Response(RestaurantSerializer(qs, many=True).data)
 
     @extend_schema(
@@ -60,8 +59,7 @@ class RestaurantDetailView(APIView):
 
     def _get_restaurant(self, pk):
         try:
-            return Restaurant.objects.get(id=pk)
-            # return Restaurant.objects.select_related("rating").get(id=pk)
+            return Restaurant.objects.select_related("rating").get(id=pk)
         except Restaurant.DoesNotExist:
             return None
 

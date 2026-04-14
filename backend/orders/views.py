@@ -1,6 +1,6 @@
 """
 - Gestion des commandes
-- Review : MongoDB TODO : A revoir
+- Review : TODO : A revoir, la notation d'un plat se fait dans le module cart
 """
 from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView, RetrieveAPIView

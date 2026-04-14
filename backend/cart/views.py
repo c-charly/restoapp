@@ -263,23 +263,23 @@ class ItemRatingView(APIView):
         except Exception:
             pass
 
-        # TODO : Tracker événement analytique 
-        # try:
-        #     from analytics.models import UserEvent
-        #     UserEvent.objects.create(
-        #         user=request.user,
-        #         event_type="review_submitted",
-        #         object_type="menu_item",
-        #         object_id=d["item_id"],
-        #         properties={
-        #             "item_name": d["item_name"],
-        #             "rating": d["rating"],
-        #             "restaurant_id": str(order.restaurant_id),
-        #             "order_id": str(order_id),
-        #         },
-        #     )
-        # except Exception:
-        #     pass
+        # Tracker événement analytique 
+        try:
+            from analytics.models import UserEvent
+            UserEvent.objects.create(
+                user=request.user,
+                event_type="review_submitted",
+                object_type="menu_item",
+                object_id=d["item_id"],
+                properties={
+                    "item_name": d["item_name"],
+                    "rating": d["rating"],
+                    "restaurant_id": str(order.restaurant_id),
+                    "order_id": str(order_id),
+                },
+            )
+        except Exception:
+            pass
 
         return Response(
             ItemRatingSerializer(rating).data,

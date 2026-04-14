@@ -384,18 +384,18 @@ def _sync_cart_session_to_pg(user, cart: dict):
 
 def _track_cart_event(user, event_type: str, restaurant_id: str, restaurant_name: str, **kwargs):
     """Log analytique d'un événement panier."""
-    # try: TODO
-    #     from analytics.models import UserEvent
-    #     UserEvent.objects.create(
-    #         user=user,
-    #         event_type=event_type if event_type in dict(UserEvent.EVENT_TYPES) else "item_added_to_cart",
-    #         object_type="cart",
-    #         object_id=restaurant_id,
-    #         properties={
-    #             "restaurant_id": restaurant_id,
-    #             "restaurant_name": restaurant_name,
-    #             **kwargs,
-    #         },
-    #     )
-    # except Exception as e:
-    #     logger.debug(f"_track_cart_event failed: {e}")
+    try:
+        from analytics.models import UserEvent
+        UserEvent.objects.create(
+            user=user,
+            event_type=event_type if event_type in dict(UserEvent.EVENT_TYPES) else "item_added_to_cart",
+            object_type="cart",
+            object_id=restaurant_id,
+            properties={
+                "restaurant_id": restaurant_id,
+                "restaurant_name": restaurant_name,
+                **kwargs,
+            },
+        )
+    except Exception as e:
+        logger.debug(f"_track_cart_event failed: {e}")
