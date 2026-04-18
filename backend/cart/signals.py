@@ -39,7 +39,7 @@ def update_restaurant_rating(sender, instance, **kwargs):
                 "ratings_distribution": distribution,
             },
         )
-        logger.info(f"Restaurant {restaurant.name} rating updated → {agg['avg']}/5")
+        logger.info(f"Restaurant {restaurant.name} rating updated -> {agg['avg']}/5")
 
     except Exception as e:
         logger.error(f"update_restaurant_rating signal failed: {e}")

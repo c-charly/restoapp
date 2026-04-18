@@ -31,7 +31,7 @@ class Order(models.Model):
         db_table = "orders"
 
     def __str__(self):
-        return f"Order {self.id} — {self.status}"
+        return f"Order {self.id} - {self.status}"
 
 
 class OrderItem(models.Model):
@@ -66,4 +66,4 @@ class WalletTransaction(models.Model):
         db_table = "wallet_transactions"
 
     def __str__(self):
-        return f"{self.type} {self.amount} XAF — {self.wallet.user.email}"
+        return f"{self.type} {self.amount} XAF - {self.wallet.user.email}"

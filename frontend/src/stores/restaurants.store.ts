@@ -7,11 +7,11 @@ export const useRestaurantsStore = defineStore('restaurants', () => {
   const restaurants = ref<Restaurant[]>([])
   const loading = ref(false)
   const ratingLabel = [
-    { icon: "😠", label: "Tres Movais", value: "1" },
-    { icon: "🙁", label: "Movais", value: "2" },
-    { icon: "😐", label: "Neutre", value: "3" },
-    { icon: "🙂", label: "Heureux", value: "4" },
-    { icon: "😀", label: "Super Heureux", value: "5" },
+    { icon: "😠", label: "Tres Movais", value: 1 },
+    { icon: "🙁", label: "Movais", value: 2 },
+    { icon: "😐", label: "Neutre", value: 3 },
+    { icon: "🙂", label: "Heureux", value: 4 },
+    { icon: "😀", label: "Super Heureux", value: 5 },
   ];
 
   async function fetch() {

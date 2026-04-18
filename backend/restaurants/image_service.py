@@ -169,11 +169,12 @@ def upload_item_images(
 
             # Construire l'URL publique absolue si request disponible, sinon relative
             relative_url = f"{settings.MEDIA_URL}menus/{restaurant_id}/{item_id}/{filename}"
-            if request is not None:
-                absolute_url = request.build_absolute_uri(relative_url)
-                new_urls.append(absolute_url)
-            else:
-                new_urls.append(relative_url)
+            # if request is not None:
+            #     absolute_url = request.build_absolute_uri(relative_url)
+            # #     new_urls.append(absolute_url)
+            # else:
+            #     new_urls.append(relative_url)
+            new_urls.append(relative_url)
 
         # 6. Mettre à jour MongoDB
         # MONGODB : on fait un $push pour ajouter les URLs

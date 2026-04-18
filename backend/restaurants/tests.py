@@ -141,7 +141,7 @@ class MenuMongoDBTest(TestCase):
     @patch("restaurants.views.get_collection")
     def test_menu_returns_404_when_not_found(self, mock_get_col, mock_cached):
         """
-        GET /menu/ : si le menu n'existe ni en cache ni en MongoDB → 404.
+        GET /menu/ : si le menu n'existe ni en cache ni en MongoDB -> 404.
         """
         mock_cached.return_value = None
         mock_col = MagicMock()
@@ -304,7 +304,7 @@ class MenuItemImagesTest(TestCase):
         self.assertEqual(response.json()["uploaded_count"], 3)
 
     def test_upload_requires_authentication(self):
-        """Upload sans authentification → 401."""
+        """Upload sans authentification -> 401."""
         anon_client = APIClient()
         url = f"/api/v1/restaurants/{self.restaurant.id}/menu/items/{self.item_id}/images/"
         response = anon_client.post(url, {"images": self._make_image_file()}, format="multipart")
@@ -327,7 +327,7 @@ class MenuItemImagesTest(TestCase):
         self.assertEqual(response.status_code, 403)
 
     def test_upload_no_file_returns_400(self):
-        """POST sans fichier → 400."""
+        """POST sans fichier -> 400."""
         url = f"/api/v1/restaurants/{self.restaurant.id}/menu/items/{self.item_id}/images/"
         response = self.client_api.post(url, {}, format="multipart")
         self.assertEqual(response.status_code, 400)
@@ -335,7 +335,7 @@ class MenuItemImagesTest(TestCase):
 
     @patch("restaurants.views.upload_item_images")
     def test_upload_limit_exceeded_returns_400(self, mock_upload):
-        """Tentative d'upload au-delà de la limite → 400."""
+        """Tentative d'upload au-delà de la limite -> 400."""
         mock_upload.side_effect = ValueError(
             "Limite atteinte : ce plat a déjà 5 images (max 5)."
         )
@@ -392,7 +392,7 @@ class MenuItemImagesTest(TestCase):
 
     @patch("restaurants.views.delete_item_image")
     def test_delete_image_not_found_returns_400(self, mock_delete):
-        """DELETE avec une URL inconnue → 400."""
+        """DELETE avec une URL inconnue -> 400."""
         mock_delete.side_effect = ValueError("Image 'http://other.com/img.jpg' introuvable.")
 
         url = f"/api/v1/restaurants/{self.restaurant.id}/menu/items/{self.item_id}/images/"
@@ -405,7 +405,7 @@ class MenuItemImagesTest(TestCase):
         self.assertEqual(response.status_code, 400)
 
     def test_delete_image_missing_param_returns_400(self):
-        """DELETE sans image_url → 400."""
+        """DELETE sans image_url -> 400."""
         url = f"/api/v1/restaurants/{self.restaurant.id}/menu/items/{self.item_id}/images/"
         response = self.client_api.delete(url, {}, format="json")
         self.assertEqual(response.status_code, 400)
@@ -433,7 +433,7 @@ class MenuItemImagesTest(TestCase):
 
     @patch("restaurants.views.reorder_item_images")
     def test_reorder_invalid_urls_returns_400(self, mock_reorder):
-        """PATCH /images/reorder/ avec des URLs inconnues → 400."""
+        """PATCH /images/reorder/ avec des URLs inconnues -> 400."""
         mock_reorder.side_effect = ValueError("URLs incorrectes.")
 
         url = f"/api/v1/restaurants/{self.restaurant.id}/menu/items/{self.item_id}/images/reorder/"
@@ -446,7 +446,7 @@ class MenuItemImagesTest(TestCase):
         self.assertEqual(response.status_code, 400)
 
     def test_reorder_missing_payload_returns_400(self):
-        """PATCH /images/reorder/ sans payload → 400."""
+        """PATCH /images/reorder/ sans payload -> 400."""
         url = f"/api/v1/restaurants/{self.restaurant.id}/menu/items/{self.item_id}/images/reorder/"
         response = self.client_api.patch(url, {}, format="json")
         self.assertEqual(response.status_code, 400)

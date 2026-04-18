@@ -22,11 +22,11 @@ const { copy, copied } = useClipboard();
 <template>
   <div class="*:not-first:mt-2">
     <div class="px-1 py-0.5 border border-dashed rounded-md flex items-center gap-3">
-      <span class="text-xs">{{ value }}</span>
+      <span class="text-xs max-w-32 truncate">{{ value }}</span>
       <TooltipProvider>
         <Tooltip :delay-duration="0">
           <TooltipTrigger as-child>
-            <Button variant="ghost" size="16" class="p-1.5"
+            <Button variant="ghost" size="sm" class="p-1.5"
               @click="copy(value)"
               :aria-label="copied ? 'super' : 'copier'"
               :disabled="copied"

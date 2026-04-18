@@ -1,6 +1,6 @@
 """
 Client Redis centralisé.
-REDIS : performance temps réel — point d'entrée unique pour cache, GeoSet, Pub/Sub
+REDIS : performance temps réel - point d'entrée unique pour cache, GeoSet, Pub/Sub
 """
 import json
 import logging

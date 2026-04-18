@@ -27,6 +27,11 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar'
+import { useAuthStore } from '@/stores/auth.store'
+import { useRouter } from "vue-router";
+
+const authStore = useAuthStore()
+const router = useRouter()
 
 const props = defineProps<{
   user: {
@@ -37,6 +42,11 @@ const props = defineProps<{
 }>()
 
 const { isMobile } = useSidebar()
+
+async function handleLogout() {
+  authStore.logout()
+  router.push('/login')
+}
 </script>
 
 <template>
@@ -51,7 +61,7 @@ const { isMobile } = useSidebar()
             <Avatar class="h-8 w-8 rounded-lg">
               <AvatarImage :src="user.avatar" :alt="user.name" />
               <AvatarFallback class="rounded-lg">
-                CN
+                {{ user.name.split(' ').map(n => n[0]).join('').slice(0, 2) }}
               </AvatarFallback>
             </Avatar>
             <div class="grid flex-1 text-left text-sm leading-tight">
@@ -72,7 +82,7 @@ const { isMobile } = useSidebar()
               <Avatar class="h-8 w-8 rounded-lg">
                 <AvatarImage :src="user.avatar" :alt="user.name" />
                 <AvatarFallback class="rounded-lg">
-                  CN
+                  {{ user.name.split(' ').map(n => n[0]).join('').slice(0, 2) }}
                 </AvatarFallback>
               </Avatar>
               <div class="grid flex-1 text-left text-sm leading-tight">
@@ -97,7 +107,7 @@ const { isMobile } = useSidebar()
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>
+          <DropdownMenuItem @click="handleLogout">
             <LogOut />
             Deconnexion
           </DropdownMenuItem>

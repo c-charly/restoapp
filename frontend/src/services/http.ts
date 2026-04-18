@@ -1,9 +1,11 @@
 import axios from 'axios'
 
+export const backendUrl = 'http://localhost:8000'
+
 const http = axios.create({
   baseURL: '/api/v1',
   timeout: 15000,
-  headers: { 'Content-Type': 'application/json' }
+  // headers: { 'Content-Type': 'application/json' }
 })
 
 // Attach token

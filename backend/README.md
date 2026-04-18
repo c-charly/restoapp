@@ -1,1 +1,1 @@
-# RestoApp — Backend Django
+# RestoApp - Backend Django

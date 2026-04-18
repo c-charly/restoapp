@@ -86,11 +86,11 @@ DATABASES = {
 }
 
 # =============================================================================
-# REDIS — performance temps réel
+# REDIS - performance temps réel
 # =============================================================================
 REDIS_URL = env("REDIS_URL", default="redis://localhost:6379/0")
 
-# Django Channels — Channel Layer via Redis
+# Django Channels - Channel Layer via Redis
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",

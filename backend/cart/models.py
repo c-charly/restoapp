@@ -1,5 +1,5 @@
 """
-POSTGRES : ACID requis — historique des paniers (abandonnés ou convertis).
+POSTGRES : ACID requis - historique des paniers (abandonnés ou convertis).
 La logique live du panier est dans Redis (TTL 2h), la persistance ici.
 
 Modèles :
@@ -51,7 +51,7 @@ class CartSession(models.Model):
         ]
 
     def __str__(self):
-        return f"Panier {self.user.email} — {self.restaurant.name} [{self.status}]"
+        return f"Panier {self.user.email} - {self.restaurant.name} [{self.status}]"
 
 
 class CartItem(models.Model):
@@ -135,7 +135,7 @@ class ItemRating(models.Model):
         ]
 
     def __str__(self):
-        return f"{self.user.email} → {self.item_name} : {self.rating}/5"
+        return f"{self.user.email} -> {self.item_name} : {self.rating}/5"
 
 
 class RestaurantRating(models.Model):
@@ -161,4 +161,4 @@ class RestaurantRating(models.Model):
         db_table = "restaurant_ratings"
 
     def __str__(self):
-        return f"{self.restaurant.name} — {self.avg_rating}/5 ({self.total_ratings} avis)"
+        return f"{self.restaurant.name} - {self.avg_rating}/5 ({self.total_ratings} avis)"

@@ -1,6 +1,6 @@
 """
 Test : rollback de transaction si solde insuffisant.
-POSTGRES : ACID requis — ni Order ni WalletTransaction ne doivent être créés.
+POSTGRES : ACID requis - ni Order ni WalletTransaction ne doivent être créés.
 """
 from unittest.mock import patch, MagicMock
 from django.test import TestCase
@@ -52,7 +52,7 @@ class OrderTransactionTest(TestCase):
     def test_order_transaction_rollback(self, mock_get_col, mock_log, mock_redis):
         """
         Si le solde est insuffisant, AUCUNE Order ni WalletTransaction ne doit être
-        créée dans PostgreSQL — le ROLLBACK annule tout.
+        créée dans PostgreSQL - le ROLLBACK annule tout.
         """
         mock_col = MagicMock()
         mock_col.find_one.return_value = MOCK_MENU.copy()
@@ -73,15 +73,15 @@ class OrderTransactionTest(TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json()["code"], "INSUFFICIENT_FUNDS")
 
-        # Vérification ROLLBACK PostgreSQL — aucune Order créée
+        # Vérification ROLLBACK PostgreSQL - aucune Order créée
         self.assertEqual(Order.objects.count(), orders_before,
                          "ROLLBACK échoué : une Order a été créée malgré le solde insuffisant")
 
-        # Vérification ROLLBACK PostgreSQL — aucune WalletTransaction créée
+        # Vérification ROLLBACK PostgreSQL - aucune WalletTransaction créée
         self.assertEqual(WalletTransaction.objects.count(), transactions_before,
                          "ROLLBACK échoué : une WalletTransaction a été créée")
 
-        # Vérification ROLLBACK PostgreSQL — le solde n'a pas changé
+        # Vérification ROLLBACK PostgreSQL - le solde n'a pas changé
         wallet_balance_after = Wallet.objects.get(user=self.user).balance
         self.assertEqual(wallet_balance_before, wallet_balance_after,
                          "ROLLBACK échoué : le solde a été modifié")

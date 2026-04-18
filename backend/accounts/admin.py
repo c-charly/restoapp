@@ -29,7 +29,7 @@ class UserAdmin(BaseUserAdmin):
     )
 
     def full_name(self, obj):
-        return f"{obj.first_name} {obj.last_name}".strip() or "—"
+        return f"{obj.first_name} {obj.last_name}".strip() or "-"
     full_name.short_description = "Nom"
 
     def role_badge(self, obj):

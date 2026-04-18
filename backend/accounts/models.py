@@ -60,7 +60,7 @@ class Wallet(models.Model):
         db_table = "wallets"
 
     def __str__(self):
-        return f"Wallet de {self.user.email} — {self.balance} XAF"
+        return f"Wallet de {self.user.email} - {self.balance} XAF"
 
 
 class Address(models.Model):

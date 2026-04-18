@@ -24,7 +24,7 @@ from .image_service import (
     reorder_item_images, get_item_images,
 )
 
-# RESTAURANTS — CRUD
+# RESTAURANTS - CRUD
 class RestaurantListCreateView(APIView):
     permission_classes = [AllowAny]
 
@@ -121,7 +121,7 @@ class MenuView(APIView):
     )
     def get(self, request, pk):
         restaurant_id = str(pk)
-        # REDIS : performance temps réel — cache avant MongoDB
+        # REDIS : performance temps réel - cache avant MongoDB
         cached = get_cached_menu(restaurant_id)
         if cached:
             cached["_cache"] = "HIT (Redis)"
@@ -230,7 +230,7 @@ class MenuView(APIView):
         return Response({"message": "Menu supprimé."}, status=200)
 
 
-# IMAGES DES PLATS — disque + URLs dans MongoDB
+# IMAGES DES PLATS - disque + URLs dans MongoDB
 class MenuItemImagesView(APIView):
     parser_classes = [MultiPartParser, FormParser, JSONParser]
     permission_classes = [IsAuthenticated]
@@ -261,7 +261,7 @@ class MenuItemImagesView(APIView):
         summary="[Owner/Admin] Uploader des images (multipart/form-data)",
         description=(
             "Champ : `images` (un ou plusieurs fichiers).\n"
-            "Extensions : `.jpg .jpeg .png .webp` — Max **5 Mo** par image — Max **5 images** par plat.\n\n"
+            "Extensions : `.jpg .jpeg .png .webp` - Max **5 Mo** par image - Max **5 images** par plat.\n\n"
         ),
     )
     def post(self, request, pk, item_id):

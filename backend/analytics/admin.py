@@ -31,7 +31,7 @@ class UserSessionAdmin(admin.ModelAdmin):
         if obj.duration_seconds:
             m, s = divmod(obj.duration_seconds, 60)
             return f"{m}m {s}s"
-        return "—"
+        return "-"
     duration_display.short_description = "Durée"
 
 

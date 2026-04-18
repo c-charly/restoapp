@@ -1,12 +1,12 @@
 <template>
   <div class="">
-
-    <div class="flex justify-between mb-8">
-      <Badge variant="ghost" class="rounded-md p-1">
-        <span>{{ restaurants.length }} restaurants</span>
-      </Badge>
-      <Button @click="showCreate = true">
-        <Plus :size="14" /> Nouveau restaurant
+    <div class="flex items-center justify-between mb-3">
+      <div>
+        <h1 class="text-2xl font-semibold tracking-tight">Restaurants</h1>
+        <p class="text-muted-foreground text-sm mt-0.5">{{ restaurants.length }} restaurant{{ restaurants.length > 1 ? 's' : '' }} au total</p>
+      </div>
+      <Button v-if="authStore.isAdmin" @click="showCreate = true">
+        <Plus class="size-4" />Ajouter
       </Button>
     </div>
 
@@ -37,7 +37,7 @@
             <h3 class="text-2xl/none font-semibold">{{ resto.name }}</h3>
 
             <div class="flex items-center gap-2">
-              <Badge variant="secondary">Adresse : {{ resto.address }}</Badge>
+              <Badge variant="secondary"><MapPin class="size-3.5 shrink-0" /> {{ resto.address }}</Badge>
               <Badge variant="secondary">Latitude : {{ resto.latitude }}</Badge>
               <Badge variant="secondary">Longitude : {{ resto.longitude }}</Badge>
             </div>
@@ -52,7 +52,7 @@
 
               <div class="flex gap-1 h-fit">
                 <Separator orientation="vertical" class="mx-2 data-[orientation=vertical]:h-8" />
-                <span class="text-[14px] items-center flex">{{ resto.avg_rating }} Moy</span>
+                <span class="text-[14px] items-center flex">{{ resto.avg_rating }} / {{ resto.total_ratings}} Personnes</span>
               </div>
 
             </div>
@@ -84,7 +84,7 @@
                 </Tooltip>
               </TooltipProvider>
 
-              <TooltipProvider>
+              <TooltipProvider v-if="authStore.isAdmin">
                 <Tooltip :delay-duration="0">
                   <TooltipTrigger as-child>
                     <Button variant="outline" class="p-0 py-1" @click="openEdit(resto)">
@@ -184,7 +184,7 @@ import { ref, reactive, onMounted, useId } from 'vue'
 import { RouterLink } from 'vue-router'
 import {
   Plus, Eye, Pencil, UtensilsCrossed, BadgeCheck,
-  BadgeAlert
+  BadgeAlert, MapPin
 } from 'lucide-vue-next'
 import { useToast } from 'vue-toastification'
 
@@ -216,6 +216,7 @@ import { Spinner } from '@/components/ui/spinner'
 import CopyToCliboard from '@/components/util/CopyToCliboard.vue';
 import { restaurantService } from '@/services/restaurant.service'
 import { useRestaurantsStore } from '@/stores/restaurants.store';
+import { useAuthStore } from '@/stores/auth.store'
 import type { Restaurant } from '@/types'
 import { format } from 'date-fns'
 
@@ -224,6 +225,8 @@ const id = useId()
 
 const toast = useToast()
 const restorantStore = useRestaurantsStore()
+const authStore = useAuthStore()
+
 const restaurants = ref<Restaurant[]>([])
 const loading = ref(false)
 const saving = ref(false)
@@ -262,8 +265,8 @@ async function handleSave() {
     } else {
 
       try {
+        Object.assign(editing.value, {...form})
         const data = await restaurantService.update(editing.value)
-        console.log('ddddddd')
         const idx = restaurants.value.findIndex(r => r.id === editing.value!.id)
         if (idx !== -1) Object.assign(restaurants.value[idx], { name: form.name, address: form.address, is_active: form.is_active })
         toast.success('Restaurant mis à jour !')

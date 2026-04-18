@@ -1,5 +1,5 @@
 """
-API publique de tracking — à appeler depuis n'importe quel service/vue.
+API publique de tracking - à appeler depuis n'importe quel service/vue.
 
 Usage :
     from analytics.tracker import track
@@ -239,7 +239,7 @@ def _log_to_mongo(user, event_type: str, object_type: str, object_id: str, prope
 
 def _increment_redis_counters(event_type: str):
     """
-    REDIS : performance temps réel — incrémente les compteurs d'événements
+    REDIS : performance temps réel - incrémente les compteurs d'événements
     avec TTL 1h pour stats temps réel (événements/min, événements/heure).
     """
     try:

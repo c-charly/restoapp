@@ -202,7 +202,7 @@ def clear_user_cart(user) -> dict:
     return updated
 
 
-# CHECKOUT — Conversion panier → commande atomique
+# CHECKOUT - Conversion panier -> commande atomique
 
 def checkout(user, delivery_address: str = "") -> Order:
     """
@@ -312,7 +312,7 @@ def checkout(user, delivery_address: str = "") -> Order:
             amount=total,
             type="debit",
             order=order,
-            description=f"Commande #{order.id} — {restaurant.name}",
+            description=f"Commande #{order.id} - {restaurant.name}",
         )
 
         # 4e. Marquer CartSession PostgreSQL comme convertie

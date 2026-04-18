@@ -2,7 +2,7 @@
 Service de création de commande
 
 MONGODB : lecture du menu pour récupérer prix et snapshots
-REDIS : performance temps réel — publication du statut initial après transaction
+REDIS : performance temps réel - publication du statut initial après transaction
 """
 import logging
 from decimal import Decimal
@@ -130,13 +130,13 @@ def create_order(user, restaurant_id: str, items_requested: list, delivery_addre
             amount=total,
             type="debit",
             order=order,
-            description=f"Commande #{order.id} — {restaurant.name}",
+            description=f"Commande #{order.id} - {restaurant.name}",
         )
 
-    # ÉTAPE 5 (post-transaction) — REDIS : publication statut
+    # ÉTAPE 5 (post-transaction) - REDIS : publication statut
     set_order_status(str(order.id), "pending")
 
-    # ÉTAPE 6 (post-transaction) — MONGODB : schéma flexible — log de l'activité
+    # ÉTAPE 6 (post-transaction) - MONGODB : schéma flexible - log de l'activité
     log_activity(
         str(user.id),
         "order_created",

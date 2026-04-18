@@ -51,7 +51,7 @@ async function handleLogin() {
       <div class="grid-lines"></div>
       <div class="glow"></div>
     </div>
-    <Card class="relative z-1 w-full max-w-[400px]">
+    <Card class="relative z-1 w-full max-w-100">
       <CardContent>
         <div class="flex flex-col items-center gap-2">
           <div class="" aria-hidden="true">

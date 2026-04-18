@@ -11,8 +11,8 @@ urlpatterns = [
     path("add/", CartAddView.as_view(), name="cart-add"),
     path("abandon/", CartAbandon.as_view(), name="cart-abandon"),
 
-    # PATCH  → modifier quantité (quantity=0 supprime)
-    # DELETE → retirer un item
+    # PATCH  -> modifier quantité (quantity=0 supprime)
+    # DELETE -> retirer un item
     path("item/<str:item_id>/", CartItemView.as_view(), name="cart-item"),
 
     path("checkout/", CheckoutView.as_view(), name="cart-checkout"),

@@ -91,7 +91,7 @@ class UserSession(models.Model):
 
     def __str__(self):
         uid = self.user.email if self.user else "anonyme"
-        return f"Session {uid} — {self.started_at:%Y-%m-%d %H:%M}"
+        return f"Session {uid} - {self.started_at:%Y-%m-%d %H:%M}"
 
     def close(self):
         """Ferme la session et calcule la durée."""
@@ -149,7 +149,7 @@ class PageView(models.Model):
         ]
 
     def __str__(self):
-        return f"{self.method} {self.path} [{self.http_status}] — {self.response_time_ms}ms"
+        return f"{self.method} {self.path} [{self.http_status}] - {self.response_time_ms}ms"
 
 
 # ÉVÉNEMENTS COMPORTEMENTAUX
@@ -237,7 +237,7 @@ class UserEvent(models.Model):
 
     def __str__(self):
         uid = self.user.email if self.user else "anonyme"
-        return f"{self.event_type} — {uid} — {self.timestamp:%Y-%m-%d %H:%M}"
+        return f"{self.event_type} - {uid} - {self.timestamp:%Y-%m-%d %H:%M}"
 
 
 # PROFIL D'HABITUDES CONSOLIDÉ PAR UTILISATEUR
@@ -337,7 +337,7 @@ class UserAnalyticsProfile(models.Model):
         db_table = "analytics_user_profiles"
 
     def __str__(self):
-        return f"AnalyticsProfile — {self.user.email} [{self.loyalty_tier}]"
+        return f"AnalyticsProfile - {self.user.email} [{self.loyalty_tier}]"
 
     def compute_loyalty_tier(self):
         """Calcule le tier de fidélité selon les dépenses totales."""
@@ -434,7 +434,7 @@ class ConversionFunnel(models.Model):
 
     def __str__(self):
         status = "Converti" if self.converted else f"Abandonné étape {self.abandoned_at_step}"
-        return f"Funnel {self.user} — {status}"
+        return f"Funnel {self.user} - {status}"
 
 
 # RECHERCHES
@@ -470,7 +470,7 @@ class SearchQuery(models.Model):
         ]
 
     def __str__(self):
-        return f'Recherche "{self.query}" — {self.results_count} résultats'
+        return f'Recherche "{self.query}" - {self.results_count} résultats'
 
 
 # ALERTES COMPORTEMENTALES
@@ -516,7 +516,7 @@ class BehavioralAlert(models.Model):
         ]
 
     def __str__(self):
-        return f"[{self.severity.upper()}] {self.alert_type} — {self.user.email}"
+        return f"[{self.severity.upper()}] {self.alert_type} - {self.user.email}"
 
 
 # INTERACTIONS AVEC LES PLATS (pour recommandation)
@@ -594,7 +594,7 @@ class ItemInteraction(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.user.email} → {self.interaction_type} → {self.item_name}"
+        return f"{self.user.email} -> {self.interaction_type} -> {self.item_name}"
 
 
 class UserTasteProfile(models.Model):
@@ -643,4 +643,4 @@ class UserTasteProfile(models.Model):
         db_table = "analytics_taste_profiles"
 
     def __str__(self):
-        return f"TasteProfile — {self.user.email} ({self.total_interactions} interactions)"
+        return f"TasteProfile - {self.user.email} ({self.total_interactions} interactions)"

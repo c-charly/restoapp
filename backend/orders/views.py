@@ -32,7 +32,7 @@ class OrderCreateView(APIView):
         description=(
             "1. Lit les items depuis **MongoDB** (menu)\n"
             "2. Vérifie le solde **Wallet**\n"
-            "3. `BEGIN TRANSACTION` — Débit, Order, OrderItems, WalletTransaction\n"
+            "3. `BEGIN TRANSACTION` - Débit, Order, OrderItems, WalletTransaction\n"
             "4. `COMMIT` / `ROLLBACK`\n"
             "5. Publie sur **Redis** Pub/Sub\n\n"
             "Pour une commande avec options et instructions, utilisez le **panier** : "
@@ -117,7 +117,7 @@ class OrderDetailView(RetrieveAPIView):
                             .prefetch_related("items")
 
 
-# CHANGEMENT DE STATUT — réservé admin
+# CHANGEMENT DE STATUT - réservé admin
 
 class OrderStatusView(APIView):
     permission_classes = [IsAuthenticated]
@@ -196,7 +196,7 @@ class OrderStatusView(APIView):
         })
 
 
-# ANNULATION — par le client lui-même (seulement si pending)
+# ANNULATION - par le client lui-même (seulement si pending)
 
 class OrderCancelView(APIView):
     permission_classes = [IsAuthenticated]
